@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: online_shop
+  datasource:
+    url: jdbc:postgresql://localhost:5432/onlineshop
+    username: postgres
+    password: '@Lazizbek17'
+    driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+
+jjwt:
+  token:
+    key:
+      secret: O4xoGCVmFqHnkkbcOkqnD/yB2V/W8dpQpFXq981jDOt4dnyB0Ya+v1DpYNYh8N+UXSMfPCC9wCglXyjAgEKsRQ==
+    time:
+      expiration: 1200000
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger
+# todo checking for is user already registered
+# todo simplify all classes
+# todo change some info in jwt tokens if it's necessary
