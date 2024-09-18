@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.Collection;
 import java.util.List;
@@ -26,15 +27,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-public class User  implements UserDetails {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
     private String firstName;
     private String lastName;
     private String password;
     private String email;
     private String phone;
+    @OneToOne
+    private Address address;
+    @OneToOne
+    private CreditCard creditCard;
     @Enumerated(EnumType.STRING)
     private Role role;
     @Column(columnDefinition = "boolean default true")
