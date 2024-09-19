@@ -10,4 +10,5 @@ import uz.pdp.onlineshop.entity.User;
 @Transactional
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
+    boolean existsByEmailAndEnabledTrue(String email);
 }

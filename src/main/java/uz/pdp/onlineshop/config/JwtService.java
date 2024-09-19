@@ -12,6 +12,7 @@ import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import uz.pdp.onlineshop.entity.User;
 
 @Service
 public class JwtService {
@@ -42,14 +43,15 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails, Map<String, Object> claims) {
+    public String generateToken(User user ) {
         return Jwts
                 .builder()
-                .setClaims(claims)
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_EXPIRATION))
-                .signWith(getKey(), SignatureAlgorithm.HS256)
+                .subject(user.getUsername())
+                .claim("enabled", user.isEnabled())
+                .claim("roles", user.getRole())
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + JWT_TOKEN_EXPIRATION))
+                .signWith(getKey())
                 .compact();
     }
 
@@ -57,9 +59,6 @@ public class JwtService {
         return extractClaims(token).getExpiration().before(new Date());
     }
 
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(userDetails, new HashMap<>());
-    }
 
     public boolean validateToken(String token, UserDetails userDetails) {
         final String email = extractEmail(token);

@@ -1,4 +1,4 @@
-package uz.pdp.onlineshop.controller;
+package uz.pdp.onlineshop.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AuthenticationRequest {
+public class SignUpDto {
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
 }
