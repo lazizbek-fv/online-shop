@@ -2,9 +2,9 @@ spring:
   application:
     name: online_shop
   datasource:
-    url: jdbc:postgresql://localhost:5432/onlineshop
-    username: postgres
-    password: '@Lazizbek17'
+    url: jdbc:postgresql://localhost:5432/online_shop
+    username: developer
+    password: '@developer1017'
     driverClassName: org.postgresql.Driver
   jpa:
     hibernate:
